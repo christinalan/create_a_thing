@@ -1,0 +1,19 @@
+p {
+  font-size: 20px;
+}
+
+.memeImg {
+  margin-top: 20px;
+  width: 75%;
+  height: 75%;
+}
+
+.img_container {
+  width: 50%;
+  height: 50%;
+}
+
+.button_meme {
+  margin-top: 20px;
+  padding: 10px;
+}
