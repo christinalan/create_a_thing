@@ -3,6 +3,7 @@ let memeName;
 let memeImage;
 let memeURL;
 let p5Image;
+let clickedB;
 
 //loads initial meme
 window.addEventListener("load", function() {
@@ -48,6 +49,12 @@ memeButton.addEventListener("click", function() {
     memeURL = memeData[randomMeme].url
     p5Image = loadImage(memeURL)
     })
+})
+
+let surpriseButton = document.getElementById("surprise_b");
+surpriseButton.addEventListener("click", function() {
+    clickedB = !clickedB
+    console.log(clickedB)
 })
 
 // global parameters for fire
@@ -103,9 +110,8 @@ function draw() {
     // Display the result
     drawFire();
 
-    //IMAGE distortion
+    //IMAGE distortion (default)
     image(p5Image, 0, 0)
-    // filter(INVERT);
     image(p5Image, 0, 200)
     tint(255, 92, 53, 126)
 
@@ -114,6 +120,10 @@ function draw() {
     image(p5Image, 200, 0);
     filter(POSTERIZE, 4);
     pop();
+
+    if (clickedB==true) {
+          filter(INVERT);
+    }
 }
 
 
