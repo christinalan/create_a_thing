@@ -118,7 +118,7 @@ function draw() {
     push();
     scale(0.5);
     image(p5Image, 200, 0);
-    filter(POSTERIZE, 4);
+    filter(POSTERIZE, 15);
     pop();
 
     if (clickedB==true) {
