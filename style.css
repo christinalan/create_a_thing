@@ -1,4 +1,6 @@
 body {
+  background-image: url("diana-vargas-ZySVEbGBNxA-unsplash.jpg");
+  background-position: center;
   margin: 15px 30px;
   display: flex;
   flex-direction: row;
@@ -11,7 +13,12 @@ body {
 }
 
 p {
-  font-size: 20px;
+  font-family: 'Impact', impact;
+  font-size: 25px;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #FBF4F4;
+  /*outline: 3px solid;*/
 }
 
 .memeImg {
@@ -25,12 +32,37 @@ p {
   height: 50%;
 }
 
-.button_meme {
+.button_surprise {
+  margin-right: 350px;
+}
+
+/* --------------------------------------- */
+
+.meme_text {
+  font-family: 'Impact', impact;
+  font-size: 25px;
+  letter-spacing: 2.5px;
+  font-weight: 500;
+  color: #000;
+  outline: 3px solid;
+}
+
+.textRead {
+  margin-top: 40px;
+  width: 55%;
+  height: 55%;
+}
+
+.button_text {
+  flex-direction: row;
   padding: 10px;
 }
 
-.button_surprise {
-  margin-right: 350px;
+.button_meme {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding: 10px;
 }
 
 canvas {

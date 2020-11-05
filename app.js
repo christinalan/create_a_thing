@@ -4,6 +4,11 @@ let memeImage;
 let memeURL;
 let p5Image;
 let clickedB;
+// ===============================
+let memeText;
+let memeNameText;
+let memeImageText;
+let memeURLText;
 
 //loads initial meme
 window.addEventListener("load", function() {
@@ -28,8 +33,46 @@ fetch("https://api.imgflip.com/get_memes")
     })
 });
 
-//refreshes the meme with the meme button
+//loads initial meme text from https://github.com/D3vd/Meme_Api
+window.addEventListener("load", function() {
+  console.log('page is loaded!');
+fetch("https://meme-api.herokuapp.com/gimme/15?action=render")
+.then(response => response.json())
+.then(data => {
+  //Seems like the config to access data is contengent upon the api or the config of what your accessing
+  console.log(data.memes[0].title); // ".title" did the trick to render the "Title" portion of the 2nd Meme API
+
+  // Process this API portion here...
+  memeTextData = data.memes.title
+  randomTextMeme = Math.floor(Math.random() * data.memes.length);
+  console.log(randomTextMeme);
+
+  memeText = document.getElementById("meme_text");
+  //memeText.innerHTML = data.memes[randomTextMeme].title;
+  })
+});
+
+//refreshes the memeText with the a meme button press
 let memeButton = document.getElementById("button");
+memeButton.addEventListener("click", function() {
+
+  fetch("https://meme-api.herokuapp.com/gimme/15?action=render")
+  .then(response => response.json())
+  .then(data => {
+    console.log(data.memes[0].title); // ".title" did the trick to render the "Title" portion of the 2nd Meme API
+
+    // Process this API portion here...
+    memeTextData = data.memes.title
+    randomTextMeme = Math.floor(Math.random() * data.memes.length);
+    console.log(randomTextMeme);
+  
+    memeText = document.getElementById("meme_text");
+    memeText.innerHTML = data.memes[randomTextMeme].title;
+    })
+})
+
+//refreshes the meme with the meme button
+//let memeButton = document.getElementById("button"); //We can just create another click event for the same button press event...
 memeButton.addEventListener("click", function() {
 
     fetch("https://api.imgflip.com/get_memes")
@@ -38,8 +81,7 @@ memeButton.addEventListener("click", function() {
     console.log(data.data.memes)
     memeData = data.data.memes
     randomMeme = Math.floor(Math.random() * data.data.memes.length);
-    
-    // console.log(memeData[randomMeme].url)
+
     memeName = document.getElementById("meme_name");
     memeName.innerHTML = memeData[randomMeme].name;
 
@@ -51,15 +93,18 @@ memeButton.addEventListener("click", function() {
     })
 })
 
+//creates the surprise button and links it to the inverse display function
 let surpriseButton = document.getElementById("surprise_b");
 surpriseButton.addEventListener("click", function() {
     clickedB = !clickedB
     console.log(clickedB)
 })
 
+// ===============================
+
 // global parameters for fire
 // fire code is from https://kampeki-factory.blogspot.com/2018/03/set-your-browser-on-fire-with-p5js.html
-var fireElemLenght  = 6;
+var fireElemLenght  = 9; // Changed to 9 for more intensity...
 var elemOpacity     = 255;
 
 var fireLines   = [];
@@ -96,7 +141,6 @@ function setup() {
   noStroke();
 }
 
-
 function draw() {
     // We clean the background each time
     background(0,0,0);
@@ -110,8 +154,9 @@ function draw() {
     // Display the result
     drawFire();
 
-    //IMAGE distortion (default)
+    //IMAGE distortion
     image(p5Image, 0, 0)
+    // filter(INVERT);
     image(p5Image, 0, 200)
     tint(255, 92, 53, 126)
 
@@ -121,12 +166,11 @@ function draw() {
     filter(POSTERIZE, 15);
     pop();
 
+    //inverts image if "Surprise" button pressed
     if (clickedB==true) {
-          filter(INVERT);
-    }
+        filter(INVERT);
+  }
 }
-
-
 
 function initializePalette()
 {
@@ -158,7 +202,6 @@ function initializePalette()
   }
 }
 
-
 // ======================================
 // &gt; initFireLine() method
 // Make a new base fire line (randomly, to make the fire 'move' when it grows)
@@ -174,7 +217,6 @@ function initFireLine()
     fireLines[fireHeight-3][x] = random(0,100);
   }
 }
-
 
 // ======================================
 // &gt; fireGrow() method
@@ -205,7 +247,6 @@ function fireGrow(){
    }
  }
 }
-
 
 // ======================================
 // &gt; drawFire() method
