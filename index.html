@@ -9,19 +9,33 @@
   <body>
     <div class="meme_container">
       <button class="button_meme" id="button">New Meme</button>
+      
       <div class="img_container">
         <img class="memeImg" id="meme_img" />
       </div>
+      
+      <div class="text_container">
+        <img class="textRead" id="text_read" />
+      </div>
 
-      <p id="meme_name"></p>
+      <!--Container for displaying the random meme text on screen-->
+      <!-- <div class="meme_text_container">
+        <img class="memeTxt" id="meme_txt" />
+      </div> -->
+      
+      <p id="meme_name"></p> <!-- Must be active in order to display the random meme img -->
+      <p id="meme_text"></p> <!-- This is where the 2nd Meme API text will go -->
     </div>
 
-    <button id="surprise_b" class="button_surprise button_meme">
-      surprise!
+    <!-- <button class="button_memetext" id="newmemetext_b">
+      Meme Text
+    </button> -->
+
+    <button class="button_surprise button_meme" id="surprise_b">
+      Surprise!
     </button>
 
     <script src="https://cdn.jsdelivr.net/npm/p5@1.1.9/lib/p5.js"></script>
-    <!-- <script src="p5bg.js"></script> -->
     <script src="app.js"></script>
   </body>
 </html>
